@@ -1,91 +1,141 @@
-.highlight { background-color: yellow; }
-
-.error {
-  background-color: lightcoral;
-  border: 1px solid red;
+/* ===== Light Simple Typing Game ===== */
+:root{
+  --bg: #f7f8fb;
+  --text: #111827;
+  --muted: #6b7280;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --primary: #3b82f6;
+  --good: #16a34a;
+  --bad: #ef4444;
+  --radius: 10px;
+  --shadow: 0 4px 16px rgba(0,0,0,.06);
 }
 
-html, body { height: 100%; }
+*{ box-sizing:border-box; }
+html, body { height:100%; }
 body {
-  margin: 0;
-  line-height: 1.6;
-  padding: 24px;
-  color: #0f172a;
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
-  background: #f8fafc; 
-  text-align: center;  
+  display:flex; align-items:center; justify-content:center;
+  padding: 24px;
 }
 
-h1 {
-  display: inline-flex;
-  align-items: center;
+.wrap { width:min(720px, 100%); }
+
+.title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--text);
+}
+.subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin: 0 0 10px 0;
-  font-weight: 700;
 }
-#quote {
-  font-size: 20px;
-  margin: 16px auto;
-  min-height: 48px;
-  padding: 8px 10px;
-  border-radius: 8px;
-  background: #ffffff;
-  border: 1px dashed #e5e7eb; 
-  max-width: 720px;          
-}
-#message {
-  min-height: 28px;
-  margin: 8px 0;
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
   font-weight: 600;
+  color: var(--muted);
 }
+
+.quote {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 4px 0;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text);
+}
+.quote span { padding: 1px 2px; border-radius: 4px; }
+.quote .highlight { background: #e0ecff; }
+.quote .done { color: var(--muted); }
+
+.progress {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress__bar {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+}
+
+.message {
+  min-height: 24px;
+  text-align: center;
+  font-weight: 700;
+  color: var(--text);
+}
+.message.success { color: var(--good); }
+.message.warn { color: var(--bad); }
 
 .controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;        
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
   margin-top: 6px;
 }
+@media (max-width: 520px) {
+  .controls { grid-template-columns: 1fr 1fr; }
+}
 
-#typed-value {
-  width: 360px;
-  max-width: 100%;
+input {
+  width: 100%;
   padding: 10px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
   font-size: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   outline: none;
-  background: #fff;
-  transition: box-shadow .15s ease, border-color .15s ease;
+  transition: border-color .15s ease;
 }
-#typed-value:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99,102,241,.15);
+input:focus {
+  border-color: var(--primary);
 }
-#typed-value.is-disabled {
-  background: #f3f4f6;
-  color: #6b7280;
+input.error {
+  border-color: var(--bad);
+  background: #fff0f0;
+}
+input[disabled] {
+  opacity: .6;
   cursor: not-allowed;
 }
 
-#start {
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 50%;
-  background: #111827;
-  color: #fff;
+.btn {
+  height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  color: #111827;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 22px; 
-  transition: transform .05s ease, background .2s ease, box-shadow .2s ease;
-  box-shadow: 0 4px 12px rgba(17,24,39,.18);
 }
-#start:hover { background: #1f2937; }
-#start:active { transform: scale(0.98); }
-
-.msg-success { color: #059669; } 
-.msg-hint    { color: #2563eb; } 
+.btn:hover { background: #f3f4f6; }
+.btn--primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.btn--primary:hover { filter: brightness(0.97); }
