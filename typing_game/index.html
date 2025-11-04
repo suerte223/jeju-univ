@@ -1,32 +1,36 @@
 <!doctype html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>Typing game</title>
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-  />
+  <title>Typing Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1><i class="fa-solid fa-keyboard"></i> Typing game!</h1>
-  <p>
-    Practice your typing skills with a quote from Sherlock Holmes.
-    Click <strong>start</strong> to begin!
-  </p>
+  <main class="wrap">
+    <h1 class="title">⌨️ Typing Game</h1>
+    <p class="subtitle">Start 버튼을 눌러 연습을 시작하세요.</p>
 
-  <p id="quote"></p>
-  <p id="message"></p>
+    <section class="card">
+      <div class="topbar">
+        <span id="timer">00:00</span>
+      </div>
 
-  <div class="controls">
-    <input type="text" aria-label="current word" id="typed-value" />
-    <button type="button" id="start" title="start">
-      <i class="fa-solid fa-right-long"></i>
-    </button>
-  </div>
+      <p id="quote" class="quote"></p>
+
+      <div class="progress">
+        <div id="progress-bar" class="progress__bar"></div>
+      </div>
+
+      <p id="message" class="message"></p>
+
+      <div class="controls">
+        <input id="typed-value" type="text" placeholder="여기에 타이핑..." autocomplete="off" />
+        <button id="start" class="btn btn--primary">Start</button>
+        <button id="reset" class="btn">Reset</button>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
