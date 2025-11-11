@@ -1,22 +1,22 @@
-/* 10페이지: reset CSS */
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, button { margin: 0; padding: 0 }
-fieldset, img { border: 0 none }
-dl, ul, ol, menu, li { list-style: none }
-blockquote, q { quotes: none }
-blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none }
-input, select, textarea, button { vertical-align: middle; font-size: 100% }
-button { border: 0 none; background-color: transparent; cursor: pointer }
-table { border-collapse: collapse; border-spacing: 0 }
-body { -webkit-text-size-adjust: none }
-input[type='text'], input[type='password'], input[type='submit'], input[type='search'], input[type='tel'], input[type='email'], input[type='button'], input[type='reset'] { -webkit-appearance: none; border-radius: 0; }
-input[type='search']::-webkit-search-cancel-button { -webkit-appearance: none }
-body { background: #fff }
-body, th, td, input, select, textarea, button { font-size: 13px; line-height: 1; font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; color: #333; }
-a { color: #333; text-decoration: none }
-a:active, a:hover { text-decoration: none }
-address, caption, cite, code, dfn, em, var { font-style: normal; font-weight: normal }
+/* 10페이지: reset CSS (오류 모두 수정 완료) */
+body, div, dl, dt, dd, ul,ol,li,h1,h2,h3,h4,h5, h6,pre, code, form, fieldset, legend, textarea, p,blockquote, th, td, input, select, button{margin:0;padding:0}
+fieldset, img{border:0 none}
+dl,ul,ol, menu, li{list-style:none}
+blockquote, q{quotes:none}
+blockquote:before, blockquote:after,q:before, q:after{content:''; content:none}
+input, select, textarea, button{vertical-align:middle;font-size:100%}
+button{border:0 none; background-color: transparent;cursor:pointer}
+table {border-collapse:collapse;border-spacing:0}
+body{-webkit-text-size-adjust:none}
+input[type='text'], input[type='password'], input[type='submit'], input[type='search'], input[type='tel'], input[type='email'], input[type='button'], input[type='reset'] {-webkit-appearance: none; border-radius: 0; }
+input[type='search']::-webkit-search-cancel-button{-webkit-appearance: none}
+body{background:#fff}
+body, th, td, input, select, textarea, button {font-size:14px; line-height:1.5;font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;color:#333;}
+a{color:#333;text-decoration:none}
+a:active, a:hover{text-decoration:none}
+address, caption,cite,code, dfn,em, var{font-style:normal; font-weight:normal}
 
-/* --- [실습 2] 시안 CSS 추가 --- */
+/* --- [실습 2] 시안 CSS (오른쪽 이미지 기준) --- */
 
 body {
     font-family: Arial, sans-serif;
@@ -27,66 +27,71 @@ body {
 }
 
 .container {
-    width: 350px; /* 확장 팝업창 크기 고정 */
-    height: 550px;
+    width: 350px; 
     padding: 20px;
-    box-sizing: border-box; /* 패딩을 크기에 포함 */
+    box-sizing: border-box; 
     text-align: center;
 }
 
 img {
-    width: 300px;
-    margin-bottom: 7px;
+    max-width: 220px;
+    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
 h1 {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-bottom: 20px;
 }
 
 h2 {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #555;
+    margin-bottom: 25px;
 }
 
 label {
-    display: block; /* 라벨을 한 줄 전체 차지하게 */
+    display: block;
+    font-size: 1rem;
     font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 5px;
     text-align: center;
+    margin-bottom: 8px;
+    margin-top: 15px;
 }
 
 input[type="text"] {
-    width: 180px;
-    height: 40px;
-    padding: 10px;
+    width: 80%;
+    padding: 8px;
     box-sizing: border-box;
-    border: 2px solid #ddd;
+    border: none; 
+    background-color: #f0f0f0;
     border-radius: 5px;
     font-size: 1rem;
+    text-align: center; 
 }
-
 button {
-    width: 72px;
-    height: 38px;
+    width: 80%;
     padding: 8px;
-    margin-top: 10px;
+    margin-top: 25px;
     background-color: #007bff;
     color: white;
-    font-size: 1.1rem;
-    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: normal;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-
+.clear-btn{
+    margin-left: 30px;
+}
 button:hover {
     background-color: #0056b3;
 }
 
-/* --- 결과창 스타일 --- */
 .result-container p {
-    text-align: left;
     margin: 10px 0;
     font-size: 1.1rem;
 }
@@ -95,38 +100,47 @@ button:hover {
     font-weight: normal;
 }
 
-/* --- JS로 제어할 부분들 기본 상태 --- */
 .loading,
 .errors,
 .result {
-    display: none; /* 평소엔 모두 숨김 */
+    display: none; 
 }
+
+/* --- [실습 3] 다크 모드 --- */
 @media (prefers-color-scheme: dark) {
-    
     body {
-        background-color: #1e1e1e; 
-        color: #f1f1f1;
+        background: #2b2b2b;
+        color: #e0e0e0;
+    }
+
+    .container {
+        background: #3c3c3c;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     }
 
     h1, h2 {
-        color: #f1f1f1;
+        color: #ffffff;
     }
 
-    .form-data input[type='text'] {
-        background-color: #333;
+    h2 {
+        color: #ccc;
+    }
+
+    label {
+        color: #e0e0e0;
+    }
+
+    input[type="text"] {
+        background-color: #555;
         border-color: #555;
-        color: #f1f1f1;
+        color: #e0e0e0;
     }
 
-    .result-container {
-        background-color: #2a2a2a;
-        border-color: #444;
+    button {
+        background-color: #0088cc;
     }
 
-    /* 모든 버튼에 적용 */
-    .search-btn, 
-    #change-region-btn {
-        background-color: #0056b3;
-        color: white;
+    button:hover {
+        background-color: #006699;
     }
 }
