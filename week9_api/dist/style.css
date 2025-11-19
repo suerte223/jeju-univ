@@ -1,0 +1,268 @@
+/* ---------- RESET ---------- */
+body, div, dl, dt, dd, ul,ol,li,h1,h2,h3,h4,h5, h6,pre, code, form,
+fieldset, legend, textarea, p,blockquote, th, td, input, select, button {
+  margin:0;
+  padding:0;
+}
+fieldset, img{border:0 none}
+dl,ul,ol, menu, li{list-style:none}
+blockquote, q{quotes:none}
+blockquote:before, blockquote:after,q:before, q:after{content:''; content:none}
+input, select, textarea, button{vertical-align:middle;font-size:100%}
+button{border:0 none; background-color: transparent;cursor:pointer}
+table {border-collapse:collapse;border-spacing:0}
+body{-webkit-text-size-adjust:none}
+input[type='text'], input[type='password'], input[type='submit'],
+input[type='search'], input[type='tel'], input[type='email'],
+input[type='button'], input[type='reset'] {
+  -webkit-appearance:none;
+  border-radius:0;
+}
+input[type='search']::-webkit-search-cancel-button{-webkit-appearance:none}
+body, th, td, input, select, textarea, button {
+  font-size:14px;
+  line-height:1.5;
+  font-family:'Malgun Gothic','맑은 고딕', Arial, sans-serif;
+  color:#0f172a;
+}
+
+/* ---------- LAYOUT ---------- */
+
+.body-hero {
+  background:#e6f2ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+}
+
+.hero-container {
+  width:360px;
+  padding:14px 14px 16px;
+  box-sizing:border-box;
+  background:#ffffff;
+  border-radius:18px;
+  box-shadow:0 12px 30px rgba(15,23,42,0.18);
+}
+
+/* ---------- HERO IMAGE + TEXT ---------- */
+
+.hero-header {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.hero-image {
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 6px 12px rgba(15,23,42,0.15);
+}
+
+.hero-text-wrap {
+  text-align:left;
+}
+
+.hero-title {
+  font-size:1.25rem;
+  font-weight:700;
+  color:#0f172a;
+  margin-bottom:2px;
+}
+
+.hero-subtitle {
+  font-size:0.85rem;
+  color:#64748b;
+}
+
+/* ---------- WIDGET CARD ---------- */
+
+.mini-widget {
+  background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+  border-radius:16px;
+  padding:10px 12px;
+  color:#f9fafb;
+  box-shadow:0 8px 18px rgba(59,130,246,0.4);
+  position:relative;
+  overflow:hidden;
+}
+
+.widget-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+
+.widget-temp {
+  font-size:2.0rem;
+  font-weight:700;
+}
+
+.widget-temp .carbon-usage {
+  display:inline-block;
+}
+
+.widget-location {
+  text-align:right;
+  font-size:0.9rem;
+  font-weight:500;
+}
+
+.widget-bottom {
+  margin-top:4px;
+  font-size:0.8rem;
+  opacity:0.95;
+}
+
+/* 장식 구름 */
+.mini-widget::before,
+.mini-widget::after {
+  content:"";
+  position:absolute;
+  background:rgba(241,245,249,0.2);
+  border-radius:999px;
+}
+.mini-widget::before {
+  width:80px;
+  height:80px;
+  top:-30px;
+  right:-20px;
+}
+.mini-widget::after {
+  width:55px;
+  height:55px;
+  bottom:-25px;
+  left:-10px;
+}
+
+/* ---------- STATUS TEXT ---------- */
+
+.loading,
+.errors {
+  margin-top:6px;
+  font-size:0.8rem;
+}
+
+.loading {
+  color:#e0f2fe;
+}
+
+.errors {
+  color:#fee2e2;
+}
+
+/* main.js에서 켜고 끌 거라 기본은 숨김 */
+.loading,
+.errors {
+  display:none;
+}
+
+/* ---------- FORM AREA ---------- */
+
+.mini-form-card {
+  margin-top:12px;
+  background:#f8fafc;
+  border-radius:14px;
+  padding:10px 10px 12px;
+  border:1px solid #e2e8f0;
+  box-shadow:0 4px 10px rgba(15,23,42,0.08);
+}
+
+.mini-label {
+  display:block;
+  font-size:0.8rem;
+  font-weight:600;
+  color:#475569;
+  margin-bottom:6px;
+}
+
+.mini-input-row {
+  display:flex;
+  gap:6px;
+}
+
+.region-name {
+  flex:1;
+  padding:7px 9px;
+  border-radius:999px;
+  border:1px solid #cbd5e1;
+  background:#ffffff;
+  font-size:0.9rem;
+}
+
+.region-name::placeholder {
+  color:#94a3b8;
+}
+
+/* Buttons */
+
+.mini-btn {
+  border-radius:999px;
+  padding:7px 14px;
+  font-size:0.85rem;
+  font-weight:500;
+  transition:background-color 0.15s ease, transform 0.08s ease;
+}
+
+.mini-btn.primary {
+  background:#0f9cf5;
+  color:#ffffff;
+  white-space:nowrap;
+}
+
+.mini-btn.primary:hover {
+  background:#0284c7;
+  transform:translateY(-1px);
+}
+
+.mini-btn.ghost {
+  margin-top:8px;
+  background:#e2e8f0;
+  color:#334155;
+}
+
+.mini-btn.ghost:hover {
+  background:#cbd5e1;
+}
+
+/* result-container와 clear-btn은 main.js에서 display 제어 */
+.result-container {
+  display:none;
+}
+.mini-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+/* Change city를 링크처럼 가볍게 보이게 */
+.clear-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  color: #0f172a;
+  text-decoration: underline;
+}
+
+/* ---------- FOOTER ---------- */
+
+.hero-footer {
+  margin-top:10px;
+  text-align:center;
+}
+
+.hero-footer small {
+  font-size:0.75rem;
+  color:#94a3b8;
+}

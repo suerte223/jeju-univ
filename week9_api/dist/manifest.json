@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "My Weather Trigger",
+  "version": "1.0.0",
+  "description": "Open-Meteo 기반 현재 날씨 대시보드 확장 프로그램",
+  "host_permissions": [
+    "https://api.open-meteo.com/*",
+    "https://geocoding-api.open-meteo.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "My Weather Trigger"
+  }
+}

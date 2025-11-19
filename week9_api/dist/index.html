@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Weather Trigger</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="body-hero">
+    <div class="hero-container">
+      <!-- ✅ 상단 히어로 이미지 -->
+      <header class="hero-header">
+        <img
+          src="images/sunny-day-fun.png"
+          alt="Sunny day fun illustration"
+          class="hero-image"
+        />
+        <div class="hero-text-wrap">
+          <h1 class="hero-title">Sunny Day Weather</h1>
+          <p class="hero-subtitle">
+            Check today's weather and enjoy a bright day outside.
+          </p>
+        </div>
+      </header>
+
+      <!-- ✅ 미니 위젯: 현재 날씨 표시 영역 -->
+      <section class="mini-widget result">
+        <!-- 🔴 여기 전체가 result-container 입니다 -->
+        <div class="result-container">
+          <div class="widget-top">
+            <div class="widget-temp">
+              <span class="carbon-usage">--°C</span>
+            </div>
+            <div class="widget-location">
+              <span class="my-region">Type a city below</span>
+            </div>
+          </div>
+
+          <div class="widget-bottom">
+            <span class="fossil-fuel"></span>
+          </div>
+        </div>
+
+        <div class="loading">Loading current weather...</div>
+        <div class="errors"></div>
+      </section>
+
+      <!-- ✅ 도시 입력 폼 -->
+      <section class="mini-form-card">
+        <form class="form-data" autocomplete="on">
+          <div class="mini-form-header">
+            <label for="region" class="mini-label">City</label>
+            <!-- 🔹 오른쪽 상단 작은 텍스트 버튼 -->
+            <button class="clear-btn" type="button">
+              Change city
+            </button>
+          </div>
+
+          <div class="mini-input-row">
+            <input
+              type="text"
+              id="region"
+              class="region-name"
+              required
+              placeholder="Seoul, Tokyo, Paris"
+            />
+            <button class="mini-btn primary search-btn" type="submit">
+              Go
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <footer class="hero-footer">
+        <small>Data by Open-Meteo · Extension by You ☀️</small>
+      </footer>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
