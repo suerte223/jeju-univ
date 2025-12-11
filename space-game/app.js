@@ -18,6 +18,9 @@ let lasers = [];
 let explosions = [];
 let keys = {};
 
+let enemyLasers = [];
+let enemyLaserImg;
+
 // 게임 상태 관리
 let score = 0;
 let lives = 3;
@@ -56,6 +59,7 @@ window.onload = async () => {
     ufoImg = await loadTexture("./assets/enemyUFO.png");
     laserImg = await loadTexture("./assets/laserRed.png");
     lifeImg = await loadTexture("./assets/life.png"); 
+    enemyLaserImg = await loadTexture("./assets/laserGreen.png");
   } catch (err) {
     console.error(err);
     alert("이미지 로드 실패! assets 폴더를 확인해주세요.");
@@ -87,6 +91,8 @@ function resetGame() {
   explosions = [];
   lastShotTime = 0;
   
+  enemyLasers = [];
+
   boss = null;
   isBossStage = false;
 
@@ -109,6 +115,8 @@ function update() {
     handleShooting();
     moveLasers();
     
+    moveEnemyLasers();
+
     // 보스 유무에 따른 로직 분기
     if (!boss) moveEnemies();
     if (boss) updateBoss();
@@ -166,7 +174,7 @@ function handleShooting() {
 // =============================
 function createEnemies(canvas, enemyImg) {
   enemies = [];
-  const rows = 3;
+  const rows = 5;
   const cols = 5;
   const margin = 10;
   const startX = (canvas.width - (cols * enemyImg.width + (cols - 1) * margin)) / 2;
@@ -225,7 +233,27 @@ function updateBoss() {
     if (boss.y < 0) { boss.y = 0; boss.vy *= -1; }
     // 보스는 화면 절반 아래로는 안 내려오게 설정
     if (boss.y + boss.height > canvas.height / 2) { boss.y = canvas.height / 2 - boss.height; boss.vy *= -1; }
-}
+
+    if (typeof boss.shootTimer === 'undefined') {
+        boss.shootTimer = 0;
+    }
+
+    // 보스 공격 로직
+    boss.shootTimer--;
+    if (boss.shootTimer <= 0) {
+        // 레이저 발사!
+        enemyLasers.push({
+            x: boss.x + boss.width / 2 - enemyLaserImg.width / 2, // 보스 중앙
+            y: boss.y + boss.height, // 보스 아래쪽
+            width: enemyLaserImg.width,
+            height: enemyLaserImg.height
+        });
+
+        // 다음 발사까지의 시간 (약 0.5초 ~ 1초 사이 랜덤하게 설정 가능)
+        // 여기서는 40프레임(약 0.7초)마다 발사
+        boss.shootTimer = 40; 
+    }
+  }
 
 // =============================
 // 충돌 감지
@@ -233,6 +261,13 @@ function updateBoss() {
 function moveLasers() {
   lasers.forEach((l) => (l.y -= 10));
   lasers = lasers.filter((l) => l.y > -50);
+}
+
+function moveEnemyLasers() {
+  // 레이저는 아래로 떨어짐 (속도 7)
+  enemyLasers.forEach((l) => (l.y += 7));
+  // 화면 밖으로 나가면 삭제
+  enemyLasers = enemyLasers.filter((l) => l.y < canvas.height);
 }
 
 function checkCollisions() {
@@ -272,6 +307,20 @@ function checkCollisions() {
         enemies.splice(ei, 1); 
         loseLife();
     }
+  });
+
+  //보스 레이저 -> 플레이어 충돌 처리
+  enemyLasers.forEach((laser, li) => {
+      if (checkRectCollision(player, laser)) {
+          // 플레이어 위치에 폭발 이펙트
+          createExplosion(player.x + player.width/2, player.y + player.height/2);
+          
+          // 레이저 삭제
+          enemyLasers.splice(li, 1);
+          
+          // 목숨 감소
+          loseLife();
+      }
   });
 
   // 3. 보스 -> 플레이어 충돌 (목숨 감소 + 튕겨내기)
@@ -352,6 +401,7 @@ function drawScene(ctx, canvas) {
 
   // 레이저 & 폭발
   lasers.forEach((l) => ctx.drawImage(laserImg, l.x, l.y));
+  enemyLasers.forEach((l) => ctx.drawImage(enemyLaserImg, l.x, l.y));
   explosions.forEach((ex) => {
     ctx.beginPath();
     ctx.arc(ex.x, ex.y, ex.radius, 0, Math.PI * 2);
